@@ -1,0 +1,75 @@
+Script de Escaneo de Redes y Puertos con Nmap
+Descripción:
+
+Este script Bash automatiza el uso de la herramienta de escaneo de redes y puertos Nmap. Proporciona un menú interactivo que permite al usuario realizar varias operaciones, como escanear su red local o escanear los puertos de una dirección IP específica con diferentes configuraciones.
+Funciones Principales:
+1. check_nmap_installed()
+
+    Descripción: Verifica si Nmap está instalado en el sistema.
+    Acciones:
+        Comprueba si el comando nmap está disponible en el sistema utilizando command -v.
+        Si Nmap no está instalado, muestra un mensaje de error y finaliza la ejecución del script.
+
+2. validate_ip()
+
+    Descripción: Valida el formato de una dirección IP.
+    Parámetros:
+        ip: Dirección IP a validar.
+    Acciones:
+        Utiliza expresiones regulares para verificar si la dirección IP tiene el formato correcto.
+        Si la dirección IP no es válida, muestra un mensaje de error y finaliza la ejecución del script.
+
+3. menu()
+
+    Descripción: Muestra un menú de opciones para que el usuario seleccione la operación que desea realizar.
+    Acciones:
+        Imprime en la pantalla un menú con las diferentes opciones disponibles, incluyendo el escaneo de la red local y el escaneo de puertos con diferentes configuraciones.
+
+4. scan_my_network()
+
+    Descripción: Realiza un escaneo de la red local para detectar los dispositivos activos en la red.
+    Acciones:
+        Utiliza el comando nmap con la opción -sn para realizar un escaneo de ping en la red local (solo descubre dispositivos sin escanear puertos).
+
+5. scan_ports_fast_noisy()
+
+    Descripción: Realiza un escaneo rápido y ruidoso de los puertos de una dirección IP específica.
+    Acciones:
+        Solicita al usuario que ingrese una dirección IP.
+        Utiliza el comando nmap con las opciones -T4 -A para realizar un escaneo rápido y ruidoso de los puertos de la IP especificada.
+
+6. scan_ports_normal()
+
+    Descripción: Realiza un escaneo normal de los puertos de una dirección IP específica.
+    Acciones:
+        Solicita al usuario que ingrese una dirección IP.
+        Utiliza el comando nmap con las opciones -sS -T4 para realizar un escaneo normal de los puertos de la IP especificada.
+
+7. scan_ports_silent()
+
+    Descripción: Realiza un escaneo silencioso de los puertos de una dirección IP específica.
+    Acciones:
+        Solicita al usuario que ingrese una dirección IP.
+        Utiliza el comando nmap con las opciones -sS -T4 -Pn para realizar un escaneo silencioso de los puertos de la IP especificada.
+
+8. handle_error()
+
+    Descripción: Maneja errores inesperados durante la ejecución del script.
+    Parámetros:
+        error_message: Mensaje de error a mostrar.
+    Acciones:
+        Muestra un mensaje de error y finaliza la ejecución del script con el mensaje proporcionado.
+
+9. trap 'handle_error "Se ha producido un error inesperado."' ERR
+
+    Descripción: Configura un "trap" para capturar errores inesperados durante la ejecución del script y ejecutar la función handle_error.
+    Acciones:
+        Configura un "trap" para la señal ERR, lo que significa que se activará cuando ocurra un error inesperado durante la ejecución del script.
+
+Uso:
+
+    Ejecute el script en una terminal de Linux.
+    Siga las instrucciones del menú para seleccionar la operación deseada.
+    Siga las instrucciones adicionales para completar la operación seleccionada, como ingresar una dirección IP.
+
+
